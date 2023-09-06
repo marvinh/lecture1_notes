@@ -24,3 +24,10 @@ CREATE TABLE `task` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+#make sure to edit your mysql connection string if you are using an alternate port and password
+
+cd into task_app
+
+>pip3 install -r requiements.txt
+>python3 app.py
