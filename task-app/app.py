@@ -27,18 +27,24 @@
 # 	return "success"
 
 from flask import Flask
-
-# create the extension
-
-# create the app
+from db import db
 def create_app():
     app = Flask(__name__,template_folder='templates')
     from home.routes import home_blueprint
-
+    from task.routes import task_blueprint
+    from api.routes  import api_blueprint
+    from flask_json import FlaskJSON
+    import flask_json
     app.register_blueprint(home_blueprint)
-
+    app.register_blueprint(task_blueprint,url_prefix="/task")
+    app.register_blueprint(api_blueprint, url_prefix="/api")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:example@mysql:3306/task_app'
+    app.config['SECRET_KEY'] = 'CELCecalkecn'
+    db.init_app(app)
+    json = FlaskJSON()
+    json.init_app(app)
     return app
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0",port=5001, debug=True)
+    app.run(host="0.0.0.0",debug=True)
