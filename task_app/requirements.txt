@@ -4,4 +4,4 @@ pymysql
 gunicorn
 python-dotenv
 jsonify
-Flask-JSO
+Flask-JSON
